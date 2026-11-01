@@ -1,0 +1,14 @@
+truenas:
+  url: "wss://10.0.2.0"
+  defaultPool: "DATA"
+  existingSecret: "truenas-api-key"
+  insecureSkipTLS: true
+
+storageClasses:
+  - name: truenas-nfs
+    isDefault: true
+    reclaimPolicy: Retain
+    parameters:
+      datasetPath: "k8s/nfs"
+      protocol: nfs
+      compression: LZ4
