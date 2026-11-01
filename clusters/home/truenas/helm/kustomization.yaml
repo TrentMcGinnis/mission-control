@@ -7,5 +7,6 @@ configurations:
   - kustomizeconfig.yaml
 configMapGenerator:
   - name: truenas-csi-helm-values
+    namespace: truenas-csi
     files:
       - values.yaml=helm-values.yaml
