@@ -13,7 +13,9 @@ storageClasses:
       protocol: nfs
       compression: LZ4
   - name: truenas-iscsi
+    reclaimPolicy: Retain
     allowVolumeExpansion: true
     parameters:
+      datasetPath: "k8s/iscsi"
       protocol: iscsi
       fsType: ext4
