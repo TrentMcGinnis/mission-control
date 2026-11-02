@@ -8,14 +8,12 @@ spec:
   releaseName: immich
   targetNamespace: immich
   chart:
+    kind: OCIRepository
     spec:
-      chart: immich
-      version: "0.13.4"
-      sourceRef:
-        kind: OCIRepository
-        name: immich
-        namespace: flux-system
-      interval: 10m
+      interval: 12h
+      url: oci://ghcr.io/immich-app/immich-charts/immich
+      ref:
+        tag: "0.13.4"
   valuesFrom:
     - kind: ConfigMap
       name: immich-helm-values
