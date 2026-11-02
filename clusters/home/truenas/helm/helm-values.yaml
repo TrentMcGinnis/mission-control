@@ -12,3 +12,8 @@ storageClasses:
       datasetPath: "k8s/nfs"
       protocol: nfs
       compression: LZ4
+  - name: truenas-iscsi
+    allowVolumeExpansion: true
+    parameters:
+      protocol: iscsi
+      fsType: ext4
