@@ -1,0 +1,15 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: homeassistant-http
+  namespace: homeassistant
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`ha.ashbrook.local`)
+      services:
+        - kind: Service
+          name: homeassistant-homeassistant-home-assistant
+          namespace: homeassistant
