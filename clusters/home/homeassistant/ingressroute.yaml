@@ -8,23 +8,24 @@ spec:
         - web
     routes:
         - kind: Rule
-          match: ENC[AES256_GCM,data:8wCh75bYXRfoV/+euEAry987Vnulp6M=,iv:SAE4Misb08jl0ods4dyttfd3t+h9cEjKaY3VZ8us4aU=,tag:Znh6No+zCW+rRVVzLsIlSA==,type:str]
+          match: ENC[AES256_GCM,data:c+eoR71oaj6ulQehCh5qck9bkjd9G7A=,iv:ZmYIlrZh/uY26RB2xqeruPSnJX/iWeYXrmicxOHQYnE=,tag:qmuokocqNvp1ULygsxMA7A==,type:str]
           services:
             - kind: Service
+              port: 80
               name: homeassistant-homeassistant-home-assistant
               namespace: homeassistant
 sops:
     age:
         - enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWTnd5UWQ3Y2E4NXNSRUZ1
-            MEZRVXZ5Um9XNDJhT1hvdlppdW9BRGtBTVRvCk1nbXN0WVJ1dkgvdkJPbDlraHJD
-            M0lBS3dBaWpoQjJzdml1cW1wMHI3UUkKLS0tIEkxYURLbHVXMmsyTitFTk5pWi9X
-            S2diMzR2ZGlDUWpBd1F6Sno4NG5xa28K5mQCUoGJFVykt+miIwaPH/QfkKawiV8P
-            pZIQ7Qsmth3/6HYEiFi24mvZytSSTWhLkDN3En6J+umKEN6pZBSgjw==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBMUHRvejV5cUZNUU0xai9l
+            b2Vodk5DSXY3TWV5K0dFMEtwN0F3eE9SRW5RCjlwU1IxaTBxeXZvRkZYNkh6MHdE
+            ejdoZ2g1eHZPV2p1MHBqNEJZR1BVeGMKLS0tIG96NklEM212YzRkNjlrbjVFQ2Fz
+            aHIvMExGOVU2T1RhM0NZU3NMb2JvVzQKhjhF2tw2GL3fPoVAimHwIEbspqfTH0z/
+            fKyILj7bYrOjnQ65awn0xgMCO0dmiZImoSTXQIPe3tWukc/VRG/bPw==
             -----END AGE ENCRYPTED FILE-----
           recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
     encrypted_regex: ^match$
     lastmodified: "2026-11-03T18:46:39Z"
-    mac: ENC[AES256_GCM,data:M94E3hSs54xgTcLNc6vRMYMg6rhw9CjILGciQ5aPV+1HeV2JvEQf1fAjK3GBoqCnn9a4tSIONTXkR9YCTAqldzFbXN8827eWwMpZqTrmxxN0Mx6iVnKJEM9GhXfhpz2NoKicsesQ1ny45a1VDbzOz7zeHhF9yodd0CcV7LWmw9E=,iv:P7eSrbs3g8R+imKqHsv6HQf/QDvd0S2/ed1HlcXTv0w=,tag:K2Gb7xQhaaf83yE28UowBw==,type:str]
+    mac: ENC[AES256_GCM,data:1Apip6AQyt+++0fjzmm5iq64zigc5B3XebAsGHcIfkdC4rMxZ2Mdpnl8+zjF4kc7+/DLkeGtoxQtBOrAnCI/1byyf1uygR+AtnfraJTNH85uujNGARfyXY5wC5smnlDUEWTikR0yaypIpxpBYVmsFk2rF12yt5AX6oAb5qL4zyI=,iv:Z8Ljo5PRhUqzVUiJSjH6dHIpuOj6IBXJkLHAaxxgzm4=,tag:tSxmkQ2sLbpgtq4hIlWXQA==,type:str]
     version: 3.13.3
