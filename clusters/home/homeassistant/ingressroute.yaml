@@ -1,15 +1,30 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: homeassistant-http
-  namespace: homeassistant
+    name: homeassistant-http
+    namespace: homeassistant
 spec:
-  entryPoints:
-    - web
-  routes:
-    - kind: Rule
-      match: Host(`ha.ashbrook.local`)
-      services:
-        - kind: Service
-          name: homeassistant-homeassistant-home-assistant
-          namespace: homeassistant
+    entryPoints:
+        - web
+    routes:
+        - kind: Rule
+          match: ENC[AES256_GCM,data:8wCh75bYXRfoV/+euEAry987Vnulp6M=,iv:SAE4Misb08jl0ods4dyttfd3t+h9cEjKaY3VZ8us4aU=,tag:Znh6No+zCW+rRVVzLsIlSA==,type:str]
+          services:
+            - kind: Service
+              name: homeassistant-homeassistant-home-assistant
+              namespace: homeassistant
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBWTnd5UWQ3Y2E4NXNSRUZ1
+            MEZRVXZ5Um9XNDJhT1hvdlppdW9BRGtBTVRvCk1nbXN0WVJ1dkgvdkJPbDlraHJD
+            M0lBS3dBaWpoQjJzdml1cW1wMHI3UUkKLS0tIEkxYURLbHVXMmsyTitFTk5pWi9X
+            S2diMzR2ZGlDUWpBd1F6Sno4NG5xa28K5mQCUoGJFVykt+miIwaPH/QfkKawiV8P
+            pZIQ7Qsmth3/6HYEiFi24mvZytSSTWhLkDN3En6J+umKEN6pZBSgjw==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^match$
+    lastmodified: "2026-11-03T18:46:39Z"
+    mac: ENC[AES256_GCM,data:M94E3hSs54xgTcLNc6vRMYMg6rhw9CjILGciQ5aPV+1HeV2JvEQf1fAjK3GBoqCnn9a4tSIONTXkR9YCTAqldzFbXN8827eWwMpZqTrmxxN0Mx6iVnKJEM9GhXfhpz2NoKicsesQ1ny45a1VDbzOz7zeHhF9yodd0CcV7LWmw9E=,iv:P7eSrbs3g8R+imKqHsv6HQf/QDvd0S2/ed1HlcXTv0w=,tag:K2Gb7xQhaaf83yE28UowBw==,type:str]
+    version: 3.13.3
