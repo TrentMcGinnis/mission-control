@@ -8,8 +8,5 @@ spec:
     name: main
   name: immich
   login: true
-  password:
-    mode: generate
-    duration: 1008h # 6 weeks
-    renewBefore: 96h # 4 days
-
+  passwordSecret:
+    name: immich-password

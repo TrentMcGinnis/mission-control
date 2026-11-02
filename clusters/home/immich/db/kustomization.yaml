@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - db-role.yaml
   - db.yaml
+  - immich-password.yaml
