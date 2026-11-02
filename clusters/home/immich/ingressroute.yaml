@@ -1,0 +1,31 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+    name: immich-http
+    namespace: immich
+spec:
+    entryPoints:
+        - web
+    routes:
+        - kind: Rule
+          match: ENC[AES256_GCM,data:I/0Hg86fBrCquWbdJ4Xs+JBN+okB4euumDDn,iv:BpfU9DFIDX+fRAxWKHuY8M45SAtkQiEYc6A9QZGKd2s=,tag:OsBKl0Gi+V4MToX+DBm9+A==,type:str]
+          services:
+            - kind: Service
+              port: http
+              name: immich-server
+              namespace: immich
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBnSWRQMUVDVW5jeG4wdWhl
+            MEtid2pmRUpvbzlGcU1sS1QvQWs1QmY2RXlBCkJWVVMwelpadlpralFkaXRGRzZR
+            bUlPUmlmek9KeXp5WkRxa2lNajdEYWMKLS0tIEc5cC9GYjY4RGtlMnlQcmt6VElE
+            QmZmVGRMRGNlTEQ1SWpoMklpL09kNWcKBItgjwVqYF3iPDQ18R6OtjVT6KzcJjcF
+            vDLKGnyrRopOG0feSZgOG0aJbVONcycoPG/yypOxnF6o+2RF5uh2nQ==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^match$
+    lastmodified: "2026-11-03T18:39:13Z"
+    mac: ENC[AES256_GCM,data:TNJyxMZ51u8Vh3/nn65h/rnRsZk8MqF7bRUaUz7viMycHTUWq6NG0p2oZ74K5HKaf/ThjZ2iryT+Nay7+PtHHn4+X3vLlJ/tDYb7/AYRFP239p1fIUf5DC6Q2QqChxvgusjSl87wk8squr4laSKdbiMX37XgeR0pGrmDRzpbNEc=,iv:XJvpTLgCz5++O2/4qOHl3W7oVYgbttlNp35U7C9RewE=,tag:FKaHlsENwtC3yXdLHK3QRw==,type:str]
+    version: 3.13.3

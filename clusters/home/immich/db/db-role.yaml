@@ -1,0 +1,15 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: immich
+  namespace: cnpg-system
+spec:
+  cluster:
+    name: main
+  name: immich
+  login: true
+  password:
+    mode: generate
+    duration: 1008h # 6 weeks
+    renewBefore: 96h # 4 days
+
