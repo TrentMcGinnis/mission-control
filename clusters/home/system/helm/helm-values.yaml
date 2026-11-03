@@ -1,0 +1,10 @@
+deployPodMonitor: false
+
+devices:
+  - name: dri
+    groups:
+      - paths:
+          - path: /dev/dri/renderD128
+
+image:
+  tag: "f7c3291"

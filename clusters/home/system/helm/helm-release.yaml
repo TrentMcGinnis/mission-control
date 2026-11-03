@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: device-plugin
+  namespace: flux-system
+spec:
+  interval: 10m
+  releaseName: device-plugin
+  targetNamespace: kube-system
+  chart:
+    kind: OCIRepository
+    spec:
+      interval: 12h
+      url: oci://ghcr.io/squat/charts/generic-device-plugin
+      ref:
+        tag: "0.2.0"
+  valuesFrom:
+    - kind: ConfigMap
+      name: device-plugin-helm-values
