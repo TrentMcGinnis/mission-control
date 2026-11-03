@@ -8,6 +8,10 @@ controllers:
   main:
     containers:
       main:
+        strategy: Recreate
+        resources:
+          limits:
+            devic.es/dri: 1
         image:
           tag: v3.2.0
         env:
