@@ -6,9 +6,9 @@
 
 controllers:
   main:
+    strategy: Recreate
     containers:
       main:
-        strategy: Recreate
         resources:
           limits:
             devic.es/dri: 1
