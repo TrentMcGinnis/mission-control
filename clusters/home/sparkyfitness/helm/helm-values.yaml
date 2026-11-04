@@ -1,0 +1,42 @@
+fullnameOverride: sparkyfitness
+global:
+  storageClass: truenas-nfs
+config:
+  timezone: America/New_York
+  # Allow initial account creation; disable after verifying administrator access.
+  disableSignup: false
+  allowPrivateNetworkCors: false
+postgresql:
+  enabled: false
+externalDatabase:
+  host: main-rw.cnpg-system.svc.cluster.local
+  port: 5432
+  database: sparkyfitness
+  auth:
+    existingSecret: sparkyfitness-owner
+server:
+  replicas: 1
+  # The pinned template does not automatically select Recreate for RWO claims.
+  strategy:
+    type: Recreate
+  image:
+    tag: v1.11.0
+  secrets:
+    generate: false
+    existingSecret: sparkyfitness-app
+  appDatabase:
+    existingSecret: sparkyfitness-appdb
+  persistence:
+    backup:
+      size: 5Gi
+    uploads:
+      size: 10Gi
+frontend:
+  image:
+    tag: v1.11.0
+ingress:
+  enabled: false
+httpRoute:
+  enabled: false
+networkPolicy:
+  enabled: false

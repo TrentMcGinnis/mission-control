@@ -1,0 +1,12 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: mealie
+  namespace: cnpg-system
+spec:
+  cluster:
+    name: main
+  name: mealie
+  login: true
+  passwordSecret:
+    name: mealie-password

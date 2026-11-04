@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: sparkyfitness
+  namespace: flux-system
+spec:
+  interval: 10m
+  timeout: 15m
+  releaseName: sparkyfitness
+  targetNamespace: sparkyfitness
+  chartRef:
+    kind: OCIRepository
+    name: sparkyfitness
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  valuesFrom:
+  - kind: ConfigMap
+    name: sparkyfitness-helm-values
+  - kind: Secret
+    name: sparkyfitness-url-values
