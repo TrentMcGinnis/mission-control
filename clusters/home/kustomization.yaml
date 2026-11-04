@@ -1,28 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- flux-system
-- system
-- truenas
-- homeassistant
-- monitoring
-- immich/namespace.yaml
-- mealie/namespace.yaml
-- sparkyfitness/namespace.yaml
-- cert-manager/ks.yaml
-- cnpg/ks.yaml
-- immich/ks.yaml
-- mealie/ks.yaml
-- sparkyfitness/ks.yaml
-# TEMPORARY: remove after child reconciliations have adopted the old root resources.
-patches:
-- target:
-    group: kustomize.toolkit.fluxcd.io
-    version: v1
-    kind: Kustomization
-    name: flux-system
-    namespace: flux-system
-  patch: |-
-    - op: replace
-      path: /spec/prune
-      value: false
+  - flux-system
+  - system
+  - truenas
+  - homeassistant
+  - monitoring
+  - immich/namespace.yaml
+  - mealie/namespace.yaml
+  - sparkyfitness/namespace.yaml
+  - cert-manager/ks.yaml
+  - cnpg/ks.yaml
+  - immich/ks.yaml
+  - mealie/ks.yaml
+  - sparkyfitness/ks.yaml
