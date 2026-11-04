@@ -16,19 +16,29 @@ spec:
         app.kubernetes.io/name: mealie
     spec:
       automountServiceAccountToken: false
+      # The image supports non-root startup; no PUID/PGID remapping is needed.
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: mealie
         image: ghcr.io/mealie-recipes/mealie:v3.30.0
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
         ports:
         - name: http
           containerPort: 9000
         env:
         - name: ALLOW_SIGNUP
           value: 'false'
-        - name: PUID
-          value: '1000'
-        - name: PGID
-          value: '1000'
         - name: TZ
           value: America/New_York
         - name: HOST_IP
