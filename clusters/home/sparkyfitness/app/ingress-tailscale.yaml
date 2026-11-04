@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: sparkyfitness-tailscale
+    namespace: sparkyfitness
+    annotations:
+        tailscale.com/tags: tag:k8s-sparkyfitness
+spec:
+    ingressClassName: tailscale
+    tls:
+        - hosts:
+            - ENC[AES256_GCM,data:f1zPxQBMjeaRBD5QZQ==,iv:K0cT8F2dZCZZx/3H9sfYqkAZHzhB0+JwALMxQJVCfX0=,tag:BTTc9544+LvkoRvunHOA1w==,type:str]
+    rules:
+        - http:
+            paths:
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                        name: sparkyfitness-frontend
+                        port:
+                            number: 80
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBLRC9HNVd5T2J1Mmd2ZHQ3
+            S2k2ZVM3QXhqWDNnUnA4QisrT2trbFRwT2xRCnc4RFZpK1k0OFhrVnRPSlhmR00v
+            cThBbmlQTDBJUzJ1K2lEeDdmdVV2eG8KLS0tIHk3ZXR3dlloMGk0eXRTeng5U1M0
+            ekRwSTBCcmxDd2R2NG9YQWEzRUNuQncKzMFccDjEXuW6TsupfBQgZRX+Ht077JWz
+            mghJ0AsNSZPFbBrOGN+6mTt/SexM5NUUhuipBFFEIyt3wPHWRMk86Q==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^(host|hosts)$
+    lastmodified: "2026-11-04T21:33:05Z"
+    mac: ENC[AES256_GCM,data:yOBL6yNaKAewq8N2hdpoJ9guz8fSwwrmPtLTgotZrClwhwZNL81P2Jo1njsspKmuYcOPUBXc00soc283ACTJUmjlCnbUl9zvCee7puMDk/j+Ch9gLTlk5pqGILwR0oV0oKRyvgaqEaziE1ck74RJF5wWMwEvpAWrkHtVzXUjKwg=,iv:rSCighYRsbTMttUPUq+yypt+YpRZVytzjDya/sTUTcs=,tag:LcJkE4uLL0SFJNxSiGmnbg==,type:str]
+    version: 3.13.3

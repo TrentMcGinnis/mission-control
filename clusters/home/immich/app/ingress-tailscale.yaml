@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: immich-tailscale
+    namespace: immich
+    annotations:
+        tailscale.com/tags: tag:k8s-immich
+spec:
+    ingressClassName: tailscale
+    tls:
+        - hosts:
+            - ENC[AES256_GCM,data:1xbdfDZU,iv:c+zXnVkJvmEdQESX+tkuA7X9TT9bDdzeLN9QzWTDmH0=,tag:eYq5UkK3XBw9ae6BTRaIvg==,type:str]
+    rules:
+        - http:
+            paths:
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                        name: immich-server
+                        port:
+                            number: 2283
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA0a0w4ZVlEMXZ5cm5EL0p2
+            TlFpTUlPT21mSXFtM1dDbFBpSFNCN2xEWm1rCktaTCs5YjQzcVZoN2JCckNWczJY
+            eWFQSHFwTnV0RXh0N0tRYXZLM29kZXcKLS0tIHgxZU4yNjAvSFpMUlN1eU5FR2k3
+            QXRLMU5iS1lpL1JmQWUvaUlCSWZZOEkKuziFFmq+Yg/R5IMpvOz6IJ+iO6XDVeLT
+            Y1yy6l70ZUMV+7XiKp+hxCgg771aOztOuUYv+tGXjnw/QHXiZW9gFg==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^(host|hosts)$
+    lastmodified: "2026-11-04T21:33:05Z"
+    mac: ENC[AES256_GCM,data:ux5B/FkaWPDL96GWPMT+4opMVx5xk/FZWl6VHIJ3fCWrELL3ckTF70U382I9cZEwx6D0BPh4AHy08VpVpGBfcaYQC9nQtVgWB5zfOetdbVQIwSERIHEClQQREwBBoljHNssyiEGTDnRAsUishkhwFA4+od/KB98g1HzYm7cker0=,iv:jj1jmuq7/Gz1DXAbhKxtI+4NJ8ndc2MQc9cXJjR+SLk=,tag:0cQKjySMzQDBaU2SQd2RYA==,type:str]
+    version: 3.13.3

@@ -58,6 +58,7 @@ spec:
   dependsOn:
   - name: immich-db
   - name: cert-manager-issuer
+  - name: tailscale-operator
   # The monitoring chart installs the ServiceMonitor CRD used by Immich metrics.
   - name: monitoring
   healthChecks:

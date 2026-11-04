@@ -6,3 +6,4 @@ resources:
 - ingressroute.yaml
 - https-redirect.yaml
 - tls
+- ingress-tailscale.yaml

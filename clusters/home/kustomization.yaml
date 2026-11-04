@@ -5,6 +5,7 @@ resources:
   - system
   - truenas
   - cert-manager
+  - tailscale
   - cnpg
   - homeassistant
   - monitoring

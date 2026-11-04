@@ -58,6 +58,7 @@ spec:
   dependsOn:
   - name: mealie-db
   - name: cert-manager-issuer
+  - name: tailscale-operator
   healthChecks:
   - apiVersion: apps/v1
     kind: Deployment

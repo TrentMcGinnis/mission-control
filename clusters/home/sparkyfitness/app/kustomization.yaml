@@ -6,3 +6,4 @@ resources:
 - app.secret.yaml
 - helm
 - tls
+- ingress-tailscale.yaml

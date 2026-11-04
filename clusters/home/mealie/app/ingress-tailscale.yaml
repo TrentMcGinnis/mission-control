@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: mealie-tailscale
+    namespace: mealie
+    annotations:
+        tailscale.com/tags: tag:k8s-mealie
+spec:
+    ingressClassName: tailscale
+    tls:
+        - hosts:
+            - ENC[AES256_GCM,data:Pyj1tGJ3,iv:CY9lp8m6SKyCaX+SP0LrTAfqlQRvsSRUVMLqk9izc1E=,tag:M5xS73oohAWmEgu242TuTw==,type:str]
+    rules:
+        - http:
+            paths:
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                        name: mealie
+                        port:
+                            number: 9000
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2UUt0bTd5dENaWHEwSjdX
+            RVJGUDNmNzVmYkZ4NW5tL1ZmMXF2QlNiL2tFCnZQUTd5RTZCNk1WamVPSWxNOVBl
+            aDMrSnZFRjgvMW9paG5jcjhTZEQ3aGMKLS0tIEhZc0R4bi82Mm5QRFpLL1AvRGdq
+            OHlFb2JpcHZ5Nzk4Uzd2ajlXdmFjcEUKoNSZjeL+Sm4SwM4eg+FprUW5cea6vW7O
+            Z3HYXdb9ngSKfl2ORrLuNs+YYey6to7ymcqJ3yiqyK3YQLHdkN79Ww==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^(host|hosts)$
+    lastmodified: "2026-11-04T21:33:05Z"
+    mac: ENC[AES256_GCM,data:Vr0Ih8NljkXYhKH8Q66W1+Q27zWrf/Y2BGuNx8Xj2inFHAYeRzJaENWsbAAM2JnZe83qcHqasVuuB3aMQFidrPsG3vCW55jXrw9HHarV1hyijZBtx/dcVMa3n29cTzziKkFc73AdnbOoL88qa+u+ZeBXn85C2w8koSMOMcG4yX4=,iv:reQzYXZq1owmbv3NWqnmUJLIkBFFFD4Cs07ub3l4/Uo=,tag:XhT7b4BmFlR6Rmcgp++ZOA==,type:str]
+    version: 3.13.3

@@ -1,0 +1,25 @@
+installCRDs: true
+
+# Flux creates this SOPS-encrypted Secret alongside the HelmRelease.
+oauthSecretVolume:
+  secret:
+    secretName: operator-oauth
+
+operatorConfig:
+  hostname: tailscale-operator
+  defaultTags:
+    - tag:k8s-operator
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
+
+proxyConfig:
+  defaultTags: tag:k8s
+
+# Only the three application ingresses are exposed, not the Kubernetes API.
+apiServerProxyConfig:
+  mode: "false"
+  allowImpersonation: "false"
