@@ -1,25 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- flux-system
-- system
-- truenas
-- cert-manager
-- cnpg
-- homeassistant
-- monitoring
-- immich
-- mealie
-- sparkyfitness
-# Temporary migration protection. Remove after service ownership is verified.
-patches:
-- target:
-    group: kustomize.toolkit.fluxcd.io
-    version: v1
-    kind: Kustomization
-    name: flux-system
-    namespace: flux-system
-  patch: |-
-    - op: replace
-      path: /spec/prune
-      value: false
+  - flux-system
+  - system
+  - truenas
+  - cert-manager
+  - cnpg
+  - homeassistant
+  - monitoring
+  - immich
+  - mealie
+  - sparkyfitness
