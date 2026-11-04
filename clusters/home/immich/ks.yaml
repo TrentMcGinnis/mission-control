@@ -30,11 +30,11 @@ spec:
   healthCheckExprs:
   - apiVersion: postgresql.cnpg.io/v1
     kind: Database
-    current: has(status) && has(status.applied) && status.applied && has(status.observedGeneration)
+    current: has(status.applied) && status.applied && has(status.observedGeneration)
       && status.observedGeneration == metadata.generation
   - apiVersion: postgresql.cnpg.io/v1
     kind: DatabaseRole
-    current: has(status) && has(status.applied) && status.applied && has(status.observedGeneration)
+    current: has(status.applied) && status.applied && has(status.observedGeneration)
       && status.observedGeneration == metadata.generation
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
