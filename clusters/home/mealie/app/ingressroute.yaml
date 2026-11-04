@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+    name: mealie-http
+    namespace: mealie
+spec:
+    entryPoints:
+        - web
+    routes:
+        - kind: Rule
+          match: ENC[AES256_GCM,data:OZrfDWGh8BV0Mtq2unW4e4/wcg+Ia/Zo9rKS,iv:FrbIaDJ+BmKeGaqafyegjH2SyP0SMRCvY+y4Rl5q62E=,tag:zOhSWqgWhyLPc4mY41yG4Q==,type:str]
+          services:
+            - kind: Service
+              name: mealie
+              port: http
+          middlewares:
+            - name: mealie-https-redirect
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBiUHJBQ2ttd3V0dDRjUTFQ
+            czlIZGkwK2MxcWh0aGNBM1JmcmxMaytUSmgwCkhZV0hMK3l0WHVrSVN5WTZWelZa
+            aTdxT3ExRVUzWXdYZlgrNmx3S1gxbjQKLS0tIDA1aTAzcXcvR3d1bGhXTUl3RlVT
+            UHkvZUY2aFkzMFFzMXJtMEtwTnErY0UKNf8T9p15ORYUGHgmN9DmZ5GLoUlNJDxo
+            YGKWWunvzKJrTB2EZ6NJuwlQVySseJ37T6FxvWc3rUnOZL7fFmk1Uw==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^match$
+    lastmodified: "2026-11-04T19:37:15Z"
+    mac: ENC[AES256_GCM,data:QihrhB0mjY74OYrV4nXjo/0FK3e6zhyNYxmG0JHo+P4Dyzvle7WTEy8JlWURjCRofCHLS8j5L51vZOipOavyO8pafxNbX9YBpKEDuWpdjp2KGQN6aU6WlTOvZgKUnv6okJ3pXZB4GtUxDx6pkRdP06UDPQPHXkmZIlpJO2Hg3f4=,iv:oY7zi5+JFeWO8bMT6+S+i3/tFNxcPM8R4fy0C1RVgL8=,tag:U2a8ATn+shSRG22W5eXTgQ==,type:str]
+    version: 3.13.3

@@ -1,0 +1,37 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: homeassistant
+    namespace: homeassistant
+spec:
+    secretName: homeassistant-tls
+    dnsNames:
+        - ENC[AES256_GCM,data:aw8VHJJoYx1qs/oMfvjY,iv:m4VjY88P5yrH8lQCQ6z3B3MY8FR+8ESLswXH9i8Co+8=,tag:ulNRYhwS2GRC1bsrc4m3uA==,type:str]
+    duration: 2160h
+    renewBefore: 720h
+    privateKey:
+        algorithm: ECDSA
+        size: 256
+        rotationPolicy: Always
+    usages:
+        - digital signature
+        - server auth
+    issuerRef:
+        name: homelab-ca
+        kind: ClusterIssuer
+        group: cert-manager.io
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNZGd6ZXlORmJwYkpoUW1B
+            QkxwWExiMlpYbWU0ekorckNJcmtkTms3bVhVCjNOZFh3N0x4WlhoQ3lCQUdseCtD
+            UkFESEo3THh4enpiYUNsb0NDZEFMemMKLS0tIGpDME9TNTR6YUtvZkJqcDgyK042
+            dDU5VzIydHo5SzA4bWcxbnVZSk02RlUKDPGVT4lvdlpjwWcl0ut4TJpXBlfG0aUt
+            v63Fm3wHIAU6EISuaKLSGEczRJkb4FcR3L3hSmANbUJ6dCcexDzYNQ==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^(dnsNames|commonName)$
+    lastmodified: "2026-11-04T19:37:15Z"
+    mac: ENC[AES256_GCM,data:q4i9TQQ82i75jLrnSWed5Z+HNbORb78bftg9sMm+8wedIwBBYBtqf+yuzsLinH+FfIHqLLfHePqGa072SVevVso5fUtOp7s70HdTtoJM6awtB3WYj0d3mrgfyyrpug6CAAIwmZnjKhq4d/TfpY5TbOKsbHIpzHIeWlsyTOeZyyM=,iv:xY5w51vyf/5VwrygzyBT6fWNxO6yx4vTJU5RGb+A/ao=,tag:R/1pNhSqL9ojD8uNjcNUTg==,type:str]
+    version: 3.13.3

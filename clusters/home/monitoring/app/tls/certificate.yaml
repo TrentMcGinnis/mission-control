@@ -1,0 +1,37 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: grafana
+    namespace: monitoring
+spec:
+    secretName: grafana-tls
+    dnsNames:
+        - ENC[AES256_GCM,data:PUrJd/OCinV55cUDiuZGZSxSaag=,iv:IeXzrQtZ4cKowf4f5fc4G9yhKGrW1khpjaMU60cj1Xs=,tag:dfXv5qrWMp2Z6lqczJKhgA==,type:str]
+    duration: 2160h
+    renewBefore: 720h
+    privateKey:
+        algorithm: ECDSA
+        size: 256
+        rotationPolicy: Always
+    usages:
+        - digital signature
+        - server auth
+    issuerRef:
+        name: homelab-ca
+        kind: ClusterIssuer
+        group: cert-manager.io
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHUFAyNWJKNkIzOVdiVlZV
+            N3JROFB6MTVrS2pLZG1hRWt6RFFLZTExWFVBClQ2TStCc3oxZG1hN0tBQk9LSmsv
+            d0RZV3l2L3hqQnBZaUxvTXNEY2I5VncKLS0tIGo4WWw2bWpPelU4eHhEVDZLbmM0
+            T0wwK1NFaWxDeFRoaHhuaHBzRDZneTAKPjk30ZM58rbqB+A4v5iltNpjvw1vtI+y
+            +QeWe1HekcfSCt1pfnzf4Tvp24NtfWmQytx5mjeFnEsRm1g3fA3LSg==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^(dnsNames|commonName)$
+    lastmodified: "2026-11-04T19:37:15Z"
+    mac: ENC[AES256_GCM,data:0s7Pn56OglCGXJZteAMrM3uv2Ln09TqtXX62kcj86nAJZwTX0LyxNgt4Rb3CzGF5UGc7oxumq+MfBsYsbm1IHh093tyNnOBVmykvw8hUIqNGKslhXVQd03pvF9mb2IeNqnC7Xw7HVVfwS56g6QfClqG0qxMz3lqfnLdLjPphUw0=,iv:Ds4lMhncnUcAkOhIdsPVBdDcK46Ihi4vE5sOih3zUYM=,tag:DN2MyJBO+IA5gj69mN7eJg==,type:str]
+    version: 3.13.3

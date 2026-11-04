@@ -7,7 +7,7 @@ spec:
   interval: 10m
   retryInterval: 1m
   timeout: 10m
-  path: ./clusters/home/cert-manager
+  path: ./clusters/home/cert-manager/controller
   prune: true
   sourceRef:
     kind: GitRepository

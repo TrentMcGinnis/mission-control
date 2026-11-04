@@ -58,9 +58,11 @@ spec:
             secretKeyRef:
               name: mealie-password
               key: password
-        envFrom:
-        - secretRef:
-            name: mealie-config
+        - name: BASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: mealie-config
+              key: BASE_URL
         resources:
           requests:
             cpu: 100m

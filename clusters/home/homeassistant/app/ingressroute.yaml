@@ -1,0 +1,33 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+    name: homeassistant-http
+    namespace: homeassistant
+spec:
+    entryPoints:
+        - web
+    routes:
+        - kind: Rule
+          match: ENC[AES256_GCM,data:5pQu8huZo4L3rHBwSu41JDWeCpm+VUI=,iv:++E0wr+l6Cy5J1FTD7bjyN9pcTPHMsb0gWB51z4QKYQ=,tag:BNliK7eFFbFBf1s7NM8pJA==,type:str]
+          services:
+            - kind: Service
+              port: http
+              name: homeassistant-homeassistant-home-assistant
+              namespace: homeassistant
+          middlewares:
+            - name: homeassistant-https-redirect
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBNWndpMGRPeVVKMXdQeCt2
+            WG44b0NGbnY2aTRKTXM4SkRkeE42ZWtRb0I0CmFnUWRheGNYWFpiSzBweGhpZ0pl
+            NGY1Y1N2dkV2TDJ6RnNJZ2lUU0UwTkUKLS0tIHBYR3FyUFJ0OTRpU0pNcm9sYkVY
+            L0hQVGR1WFh3bi90aXZ2M0pZem5ZOUkKPwXPETACcJJZ2MT8OmlHdqetnbuCexmk
+            8lrTwXYEy/GVigr/6zwC3s47geFfIJ27nJhoUHXIP9dT8Xm52xwgjg==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^match$
+    lastmodified: "2026-11-04T19:37:15Z"
+    mac: ENC[AES256_GCM,data:VmfBllf56y57sx7HCZtVPsiLFVoXypygNnW+AoFwhDNsfLGCGZ3lj7DjyVBBTQFhGWItsV9fr3Aw7hi/RxRb3yUcwlXu8Y3J5RSHSbuOTlqFKTDkjl7XEp/1XienNKnSJ/RygaoAGt9Ysjs2VNZH42kRE+MOJ3R5j8hhBwy7Yh0=,iv:9pHJMTnNV6qcjF18LV960JvOoo0EUQtgGjAAo1egrEY=,tag:Rvg2aYJBr/7RO7HAVMVUaQ==,type:str]
+    version: 3.13.3

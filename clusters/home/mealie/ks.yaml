@@ -46,7 +46,7 @@ spec:
   interval: 10m
   retryInterval: 1m
   timeout: 10m
-  path: ./clusters/home/mealie
+  path: ./clusters/home/mealie/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -57,8 +57,13 @@ spec:
       name: sops-age
   dependsOn:
   - name: mealie-db
+  - name: cert-manager-issuer
   healthChecks:
   - apiVersion: apps/v1
     kind: Deployment
+    name: mealie
+    namespace: mealie
+  - apiVersion: cert-manager.io/v1
+    kind: Certificate
     name: mealie
     namespace: mealie

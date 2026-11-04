@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+    name: grafana-http
+    namespace: monitoring
+spec:
+    entryPoints:
+        - web
+    routes:
+        - kind: Rule
+          match: ENC[AES256_GCM,data:ALREQskGi5Cox9f7N0wYuWtYJz/MTHeTDPcHFg==,iv:dpgFkgdlrzfOMlfLgmV520vDobVB9+wLou21IfHwkWI=,tag:efjH92hVN+8K9YOGtHz8Hg==,type:str]
+          services:
+            - kind: Service
+              name: monitoring-grafana
+              port: http-web
+          middlewares:
+            - name: grafana-https-redirect
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBCbElpVFN5TUpqSnBXTU9u
+            NGk1enBHTlU4QmpCKzlvNmhNbnRiQXdGb0FZCmg2UDBvVXE4YXk3bmxsUkpSdVRy
+            Zy9ScjM0ZVB4OTZhOXJSTk5YcWtTYWcKLS0tIDFyYjF3TW93RFQvdWwxaEpZd2Y1
+            V0NWNlBPS0ZvalcyVThJenZFM1lrK3cKFntGfC3yS3fbwp21iMD+yLSQLng7xHMe
+            BlV5mdFP+Yn700lVEinnYzg7SX+lz7F981Yn4CJk5PRHDxoGYZmZpg==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^match$
+    lastmodified: "2026-11-04T19:37:15Z"
+    mac: ENC[AES256_GCM,data:3LGkVh2IdKEp4776aNbGowCjqPrWGaIhiEOGYSuVn/+zoXN9hBChj41c1ExGRcWafcz14VtLVN8QK57OCT4UddOkA8DNAjuC2U7c0GN/cd/1t/LJM5vbbk6tYMYxBlg2NPsggcZRzm1XKXy26f1DvuPiRowtbme0Shbzi0gQ9tU=,iv:Ii24deAmj0foOVTJEF/H+yOdo0FEUJOI20ooZkgVoaM=,tag:x5/mAHONc9a3vXnsDE3ytw==,type:str]
+    version: 3.13.3

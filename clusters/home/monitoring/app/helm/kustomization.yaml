@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - helm-repo.yaml
+  - url-values.secret.yaml
 configurations:
   - kustomizeconfig.yaml
 configMapGenerator:

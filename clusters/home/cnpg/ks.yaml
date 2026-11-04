@@ -7,7 +7,7 @@ spec:
   interval: 10m
   retryInterval: 1m
   timeout: 10m
-  path: ./clusters/home/cnpg
+  path: ./clusters/home/cnpg/operator
   prune: true
   sourceRef:
     kind: GitRepository
@@ -42,6 +42,7 @@ spec:
       name: sops-age
   dependsOn:
   - name: cnpg-operator
+  - name: truenas
   healthChecks:
   - apiVersion: postgresql.cnpg.io/v1
     kind: Cluster

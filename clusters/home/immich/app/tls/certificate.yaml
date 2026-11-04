@@ -1,0 +1,37 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: immich
+    namespace: immich
+spec:
+    secretName: immich-tls
+    dnsNames:
+        - ENC[AES256_GCM,data:XMh9e7+JOaIBIDPVi6MB+3rt+w==,iv:81dtbllxWV5RPPL+HnHK/WLKAAYboCVVOFOlo8/7V08=,tag:9vxJkx7JoPMd7mqAuxWfdQ==,type:str]
+    duration: 2160h
+    renewBefore: 720h
+    privateKey:
+        algorithm: ECDSA
+        size: 256
+        rotationPolicy: Always
+    usages:
+        - digital signature
+        - server auth
+    issuerRef:
+        name: homelab-ca
+        kind: ClusterIssuer
+        group: cert-manager.io
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBzcVpJUVpobVdSWUZvbDFV
+            OHMzbXlxT1FaTGtDanR3aW0waFAxWTdqaFNvCmRxM1poZksvNFpKaVVEbjllVU5M
+            NUVXRjgyY0tMUDlZT2V0VklhbmtlbGsKLS0tIDZMYk1CK2dGeTFPdzlCQVhhV3o0
+            eWo1T1BxYmt3MCtFUVQzbmkvR1RPTHcKYDbDUdOk6Xdfq2Lm8u1eAuGTMpdneVUE
+            fYeu6cxQ2Q0l3dXP+3E4vV5CpYaw6/2SLupRoD/FlrhHnHaLoVs5+g==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^(dnsNames|commonName)$
+    lastmodified: "2026-11-04T19:37:15Z"
+    mac: ENC[AES256_GCM,data:5mhcCc2PzesqhKmMHlXPjGudo5qEWVg2Ph3VU8t37fMJe5HCo96ataJk9+aZRtdYKEEc/itcXiabxY9FgUFV26wraZ3HRctCLuwqOLckz1U5PYbBKDheplajkqCPbBXJaVg1AhToHqeA8fp7o+CA25Vn/ZAt5sejeaTXchx93vg=,iv:78RXTm4i89M6vH0l6o9ZMtgrJ1jOdWpUwECWcWt5Jx4=,tag:qyy9Wk0fvK6sqvobWtX0dg==,type:str]
+    version: 3.13.3
