@@ -58,6 +58,8 @@ spec:
   dependsOn:
   - name: immich-db
   - name: cert-manager-issuer
+  # The monitoring chart installs the ServiceMonitor CRD used by Immich metrics.
+  - name: monitoring
   healthChecks:
   - apiVersion: helm.toolkit.fluxcd.io/v2
     kind: HelmRelease
