@@ -1,0 +1,37 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: sparkyfitness
+    namespace: sparkyfitness
+spec:
+    secretName: sparkyfitness-tls
+    dnsNames:
+        - ENC[AES256_GCM,data:c7Bkex3T80DdPguP0CJT+gAuV6oSYfnhfOM=,iv:jZlkjuP5jh/Ga1VbY/CBtrLb3d4bxfMeLBRdTPY1+6Q=,tag:s5yypeGAdu9ud4LEzXOb8w==,type:str]
+    duration: 2160h
+    renewBefore: 720h
+    privateKey:
+        algorithm: ECDSA
+        size: 256
+        rotationPolicy: Always
+    usages:
+        - digital signature
+        - server auth
+    issuerRef:
+        name: homelab-ca
+        kind: ClusterIssuer
+        group: cert-manager.io
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBlUWlseERRajhQL3NQM2Qx
+            LzFwY1dndXVYZ3pvQnVYbHI3dWZORUlhbVdrCndFQXZIREQydzlSbDBLTFVmY2Y5
+            V09CY1N5NmxHMVFFWTRrQU90MHgrMDAKLS0tIDNwWVdtY1hsaXlDblpKcXFzSHlt
+            aTgvWGx3ajNQSTd5eS8ydGI0OW50aEkKtbEpE5GNEU/zQSaXyFC62XO8uPj2oJl5
+            F8PGcUa25gkjWX2c5F5hgNXUHacaftBAlNahmGhyYKXYlDUzfYFAcg==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^(dnsNames|commonName)$
+    lastmodified: "2026-11-04T17:22:27Z"
+    mac: ENC[AES256_GCM,data:F9GgmxtVMcYdJEb++zpH6af/ZWtXmWMMUDmZTZ2VTrgYX7WOuff6Q5oqANDKf41zTQ4TQ72QxMRVXGsH+FNkciq5rR5rjpkwGuDfAZUYMLdMvp92ccbsLKeffV6Ds0mlw5ikvKo6YX1gBvYYUuUZoXE7fdFeeADzVxBEz9jLH1w=,iv:wPpNUyv8OArk/ar4w/jg8xOvI1/LhfXdWqlYO4MiAiA=,tag:wvtdN0ypXUwIIIZRR93NzQ==,type:str]
+    version: 3.13.3

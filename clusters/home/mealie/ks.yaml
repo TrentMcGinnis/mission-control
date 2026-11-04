@@ -1,0 +1,64 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: mealie-db
+  namespace: flux-system
+spec:
+  interval: 10m
+  retryInterval: 1m
+  timeout: 10m
+  path: ./clusters/home/mealie/db
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  dependsOn:
+  - name: cnpg-cluster
+  healthChecks:
+  - apiVersion: postgresql.cnpg.io/v1
+    kind: Database
+    name: mealie
+    namespace: cnpg-system
+  - apiVersion: postgresql.cnpg.io/v1
+    kind: DatabaseRole
+    name: mealie
+    namespace: cnpg-system
+  healthCheckExprs:
+  - apiVersion: postgresql.cnpg.io/v1
+    kind: Database
+    current: has(status) && has(status.applied) && status.applied && has(status.observedGeneration)
+      && status.observedGeneration == metadata.generation
+  - apiVersion: postgresql.cnpg.io/v1
+    kind: DatabaseRole
+    current: has(status) && has(status.applied) && status.applied && has(status.observedGeneration)
+      && status.observedGeneration == metadata.generation
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: mealie
+  namespace: flux-system
+spec:
+  interval: 10m
+  retryInterval: 1m
+  timeout: 10m
+  path: ./clusters/home/mealie
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  dependsOn:
+  - name: mealie-db
+  healthChecks:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: mealie
+    namespace: mealie

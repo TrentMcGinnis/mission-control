@@ -1,0 +1,95 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: sparkyfitness-db
+  namespace: flux-system
+spec:
+  interval: 10m
+  retryInterval: 1m
+  timeout: 10m
+  path: ./clusters/home/sparkyfitness/db
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  dependsOn:
+  - name: cnpg-cluster
+  healthChecks:
+  - apiVersion: postgresql.cnpg.io/v1
+    kind: Database
+    name: sparkyfitness
+    namespace: cnpg-system
+  - apiVersion: postgresql.cnpg.io/v1
+    kind: DatabaseRole
+    name: sparkyfitness-owner
+    namespace: cnpg-system
+  - apiVersion: postgresql.cnpg.io/v1
+    kind: DatabaseRole
+    name: sparkyfitness-app
+    namespace: cnpg-system
+  healthCheckExprs:
+  - apiVersion: postgresql.cnpg.io/v1
+    kind: Database
+    current: has(status) && has(status.applied) && status.applied && has(status.observedGeneration)
+      && status.observedGeneration == metadata.generation
+  - apiVersion: postgresql.cnpg.io/v1
+    kind: DatabaseRole
+    current: has(status) && has(status.applied) && status.applied && has(status.observedGeneration)
+      && status.observedGeneration == metadata.generation
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: sparkyfitness-tls
+  namespace: flux-system
+spec:
+  interval: 10m
+  retryInterval: 1m
+  timeout: 10m
+  path: ./clusters/home/sparkyfitness/tls
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  dependsOn:
+  - name: cert-manager-issuer
+  healthChecks:
+  - apiVersion: cert-manager.io/v1
+    kind: Certificate
+    name: sparkyfitness
+    namespace: sparkyfitness
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: sparkyfitness
+  namespace: flux-system
+spec:
+  interval: 10m
+  retryInterval: 1m
+  timeout: 10m
+  path: ./clusters/home/sparkyfitness
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  dependsOn:
+  - name: sparkyfitness-db
+  - name: sparkyfitness-tls
+  healthChecks:
+  - apiVersion: helm.toolkit.fluxcd.io/v2
+    kind: HelmRelease
+    name: sparkyfitness
+    namespace: flux-system

@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+    name: sparkyfitness-http
+    namespace: sparkyfitness
+spec:
+    entryPoints:
+        - web
+    routes:
+        - kind: Rule
+          match: ENC[AES256_GCM,data:namjIKNgkoKiYA4brCjrhrM+S0K8cAHfoSImZVoKCJAk0A==,iv:qxucwvy/619tvhhEkbcOLK1xvVzfT4cuN/B8SbMgC+o=,tag:SbhBbfGcIgfgNd6U6JALjg==,type:str]
+          services:
+            - kind: Service
+              name: sparkyfitness-frontend
+              port: 80
+          middlewares:
+            - name: sparkyfitness-https-redirect
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBiS0h6NS8vY1VtTnc4QlpO
+            ZjZEOTl1aFNsN1dxSU9EZi9kNGpYSTd3QVhNCjhWd25rd2Y2VEUrSXVOdTVzNzF5
+            d2Z4UXhBWmpIbHMrR3RCRlUwa1QxemcKLS0tIER3NjBIMkFyVFZ0RVBVbm1rdlNI
+            SWdUWFArRXlDRjMwZkdvTmFOMGpGcTQK9vOWHqR+noU3lxfQTHRH1zXZDVmQJElO
+            GVId8NlBO1D48SxhHA3Bi8eaAFzIzQRyMLMKNG31HWproMiqfUVg+Q==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^match$
+    lastmodified: "2026-11-04T17:22:27Z"
+    mac: ENC[AES256_GCM,data:kJh0IXO6xKT3hkFYaUej3Tuh7bQUAHIvlILG7mtFr8TXbZt2o/DGwfbMZuCLjL+a2Hj0WLen9f49b+HKqduhx6+EezoR1xsMCj8Uk6u1ML0FLb58Mgdtgapf76btOHwtNLOC0Rpm+/PvisoZDAC/CZYsAZwzQboaKQXo49IV/GI=,iv:XAI9pj+xcCo0/hjENofiQz4w9TfW953JiRXGwbyYv/0=,tag:Bvcja8usa7ZG42HU53nn9g==,type:str]
+    version: 3.13.3
