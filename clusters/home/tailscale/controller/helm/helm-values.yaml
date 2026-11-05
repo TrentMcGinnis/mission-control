@@ -19,7 +19,8 @@ operatorConfig:
 proxyConfig:
   defaultTags: tag:k8s
 
-# Only the three application ingresses are exposed, not the Kubernetes API.
+# Authenticate API requests using the caller's Tailscale identity.
+# Kubernetes RBAC grants monitoring access separately.
 apiServerProxyConfig:
-  mode: "false"
-  allowImpersonation: "false"
+  mode: "true"
+  allowImpersonation: "true"
