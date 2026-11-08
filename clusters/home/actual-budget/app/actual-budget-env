@@ -1,3 +1,1 @@
 ACTUAL_DATA_DIR=/app/data
-ACTUAL_HTTPS_KEY=/app/tls/tls.key
-ACTUAL_HTTPS_CERT=/app/tls/tls.crt
