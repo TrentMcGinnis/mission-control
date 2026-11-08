@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+    name: actual-budget-http
+    namespace: actual-budget
+spec:
+    entryPoints:
+        - web
+    routes:
+        - kind: Rule
+          match: ENC[AES256_GCM,data:3Pw/ohzYU7kMwMCfGyRHV1id1pfgQJbdYiAw,iv:l5mHFVur3Niu5CDzNcldKJ6tlTDoLLGa+uE4AL+XC9Y=,tag:IPqh61t0sBSx/CQF6HMkaQ==,type:str]
+          services:
+            - kind: Service
+              name: actual-budget
+              port: http
+          middlewares:
+            - name: actual-budget-https-redirect
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBiUHJBQ2ttd3V0dDRjUTFQ
+            czlIZGkwK2MxcWh0aGNBM1JmcmxMaytUSmgwCkhZV0hMK3l0WHVrSVN5WTZWelZa
+            aTdxT3ExRVUzWXdYZlgrNmx3S1gxbjQKLS0tIDA1aTAzcXcvR3d1bGhXTUl3RlVT
+            UHkvZUY2aFkzMFFzMXJtMEtwTnErY0UKNf8T9p15ORYUGHgmN9DmZ5GLoUlNJDxo
+            YGKWWunvzKJrTB2EZ6NJuwlQVySseJ37T6FxvWc3rUnOZL7fFmk1Uw==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^match$
+    lastmodified: "2026-11-08T06:02:40Z"
+    mac: ENC[AES256_GCM,data:SmYI/QwYz2IvEzFqTrbMGBVxeOkGAe0NovMvZ7jVELtDJCmj8Om0wjzGl0NXpwAPjqUFKgxo9UUDhfwVv8k0VWAK4HuKQVBWV6+drx9pihWhXt7P+r7I4EDZQbUpl2Il4XvXFdLYcOz/kLYXhEukm8jyuj+4YDCVrECyPhIle5I=,iv:AeHrOT8k382DOosg8X9IZ8lNUGry0BVp1qlkX2qtBa8=,tag:H58CYmPg+xczBkLMWg1sAQ==,type:str]
+    version: 3.13.3

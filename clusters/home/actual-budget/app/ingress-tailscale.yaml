@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: actual-budget-tailscale
+    namespace: actual-budget
+    annotations:
+        tailscale.com/tags: tag:k8s-actual-budget
+spec:
+    ingressClassName: tailscale
+    tls:
+        - hosts:
+            - ENC[AES256_GCM,data:ysiEm1dhxrvBiVZbXg==,iv:fbO1/D72F4H81SUm2nITVDTYd6LQka4OrYtbBtcATRg=,tag:JIlpOCQvhNCYmtlhk4j+ig==,type:str]
+    rules:
+        - http:
+            paths:
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                        name: actual-budget
+                        port:
+                            number: 5006
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB2UUt0bTd5dENaWHEwSjdX
+            RVJGUDNmNzVmYkZ4NW5tL1ZmMXF2QlNiL2tFCnZQUTd5RTZCNk1WamVPSWxNOVBl
+            aDMrSnZFRjgvMW9paG5jcjhTZEQ3aGMKLS0tIEhZc0R4bi82Mm5QRFpLL1AvRGdq
+            OHlFb2JpcHZ5Nzk4Uzd2ajlXdmFjcEUKoNSZjeL+Sm4SwM4eg+FprUW5cea6vW7O
+            Z3HYXdb9ngSKfl2ORrLuNs+YYey6to7ymcqJ3yiqyK3YQLHdkN79Ww==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^(host|hosts)$
+    lastmodified: "2026-11-08T05:59:18Z"
+    mac: ENC[AES256_GCM,data:ww6DVoMrovv/+dlZVBn2vEwHnx3VlA+0MCiXQbtOtd+4YXddM2utb5OanO19qREkmCyM+aF+J3oFvcp5jFdZxG0/gdLtJT8Xm0Q+rPM7AjVw3svZjPgBcBw98pHI1CBIbNGxVVxXLR8VR3e4mkKCugMHpBUyckF+lAfSJFWy9A4=,iv:yZWDHaX/nn/VZi8nV9WpheMlTHeHFT+ItRG+PAElZa0=,tag:LlapdCa3IJU8yo0IegibTg==,type:str]
+    version: 3.13.3

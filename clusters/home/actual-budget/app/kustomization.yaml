@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- pvc.yaml
+- deployment.yaml
+- service.yaml
+- ingressroute.yaml
+- https-redirect.yaml
+- tls
+- ingress-tailscale.yaml
+configurations:
+  - kustomizeconfig.yaml
+configMapGenerator:
+  - name: actual-config
+    namespace: actual-budget
+    envs:
+      - actual-budget-env

@@ -1,0 +1,9 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: actual-budget-https-redirect
+  namespace: actual-budget
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true

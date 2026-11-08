@@ -1,0 +1,31 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: actual-budget
+  namespace: flux-system
+spec:
+  interval: 10m
+  retryInterval: 1m
+  timeout: 10m
+  path: ./clusters/home/actual-budget/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  dependsOn:
+    - name: cert-manager-issuer
+    - name: tailscale-operator
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: actual-budget
+      namespace: actual-budget
+    - apiVersion: cert-manager.io/v1
+      kind: Certificate
+      name: actual-budget
+      namespace: actual-budget
