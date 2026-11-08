@@ -21,6 +21,10 @@ spec:
     - name: cert-manager-issuer
     - name: tailscale-operator
   healthChecks:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: actual-budget-data
+      namespace: actual-budget
     - apiVersion: apps/v1
       kind: Deployment
       name: actual-budget

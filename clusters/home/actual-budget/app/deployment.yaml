@@ -5,6 +5,8 @@ metadata:
   namespace: actual-budget
 spec:
   replicas: 1
+  minReadySeconds: 10
+  progressDeadlineSeconds: 600
   strategy:
     type: Recreate
   selector:
@@ -46,19 +48,23 @@ spec:
             httpGet:
               path: /health
               port: http
+              scheme: HTTPS
             timeoutSeconds: 5
             periodSeconds: 10
-            failureThreshold: 60
+            failureThreshold: 30
           readinessProbe:
             httpGet:
               path: /health
               port: http
+              scheme: HTTPS
             timeoutSeconds: 5
-            periodSeconds: 10
+            periodSeconds: 5
+            failureThreshold: 3
           livenessProbe:
             httpGet:
               path: /health
               port: http
+              scheme: HTTPS
             timeoutSeconds: 5
             periodSeconds: 10
             failureThreshold: 6
