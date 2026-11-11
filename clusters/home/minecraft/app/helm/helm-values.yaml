@@ -8,7 +8,7 @@ image:
 
 # Import Crafty's server directory into minecraft-data before deployment.
 # Use 0 to stop and 1 to start; never run two copies against this world.
-replicaCount: 1
+replicaCount: 0
 strategyType: Recreate
 terminationGracePeriodSeconds: 180
 
