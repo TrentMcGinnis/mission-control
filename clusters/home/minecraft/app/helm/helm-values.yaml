@@ -40,18 +40,14 @@ serviceAnnotations:
 minecraftServer:
   eula: "TRUE"
   type: PAPER
-  # Do not use LATEST: the first boot must match the existing world/plugins.
-  version: "26.1.2"
+  version: "26.3"
   worldSaveName: world
   memory: 1G
   serviceType: ClusterIP
   servicePort: 25565
-  # Retain gameplay settings from the imported server.properties.
-  motd: Welcome to SPLIT FICTION
-  overrideServerProperties: false
+  motd: "Welcome to SPLIT FICTION"
   rcon:
     enabled: false
-  # Copy the existing plugin jars AND their config/data; do not auto-update them.
   pluginUrls: []
   extraPorts:
     - name: bluemap
@@ -63,7 +59,5 @@ minecraftServer:
         port: 8100
 
 extraEnv:
-  # Match the existing Paper build; preserve plugin compatibility during migration.
-  PAPER_BUILD: "52"
-  # Manual stop/start; no process pausing or automatic shutdown.
+  PAPER_BUILD: "249"
   PAUSE_WHEN_EMPTY_SECONDS: "120"
