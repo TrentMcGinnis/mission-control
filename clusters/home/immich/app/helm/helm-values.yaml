@@ -72,6 +72,12 @@ server:
       strategy: Recreate
       containers:
         main:
+          securityContext:
+            # Work around containerd's AppArmor stacked-profile bug blocking process signals.
+            # https://github.com/containerd/containerd/issues/14485
+            # Remove this override once the host runtime/profile fix is deployed and verified.
+            appArmorProfile:
+              type: Unconfined
           resources:
             requests:
               cpu: 500m

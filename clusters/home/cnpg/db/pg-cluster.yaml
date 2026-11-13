@@ -5,6 +5,9 @@ metadata:
   namespace: cnpg-system
 spec:
   podSecurityContext:
+    # Work around containerd's AppArmor stacked-profile bug blocking process signals.
+    # https://github.com/containerd/containerd/issues/14485
+    # Remove this override once the host runtime/profile fix is deployed and verified.
     appArmorProfile:
       type: Unconfined
     runAsUser: 26
