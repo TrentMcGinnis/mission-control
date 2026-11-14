@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pihole-data
+  namespace: pihole
+spec:
+  accessModes:
+    - ReadWriteOnce
+  # Pi-hole keeps SQLite databases here; use a block-backed filesystem.
+  storageClassName: truenas-iscsi
+  resources:
+    requests:
+      storage: 5Gi

@@ -1,0 +1,37 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: pihole
+    namespace: pihole
+spec:
+    secretName: pihole-tls
+    dnsNames:
+        - ENC[AES256_GCM,data:UHQEsKY7ih3KLFujusRWIAXB0g==,iv:7ptnwcipsySul2gEA8+OSTXHeBm1Wrdouk+lBI7kXEg=,tag:0HSxUd88x+wc6ZBZVGfwKw==,type:str]
+    duration: 2160h
+    renewBefore: 720h
+    privateKey:
+        algorithm: ECDSA
+        size: 256
+        rotationPolicy: Always
+    usages:
+        - digital signature
+        - server auth
+    issuerRef:
+        name: homelab-ca
+        kind: ClusterIssuer
+        group: cert-manager.io
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqZzdDUWJwWUJySU0xeW9o
+            NmdKaUxoUWUzNSs3TVlQK1cvV0dQeHpUM3h3CkM1R25VRTNrUjc1VzNxanJDNWVa
+            UEc0eFpJVVN5ZmErZ2FLTVhaTzJGaXcKLS0tIERha2xDVlJVQzhueEF5UG9wTDlk
+            a3Y2dE5hdWdUNkV5amh3Qy8xS3FEcjgKj7q+g2kSbjZvFJQN0uvGG4h7bY8ifqB0
+            duWvYlaPTx+LjkBgLpEOa7wrdvwHfCkqt4/sfZSpOrj6beK9sm4GhA==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^(dnsNames|commonName)$
+    lastmodified: "2026-11-14T16:51:53Z"
+    mac: ENC[AES256_GCM,data:sy0cDElf3ZjCo+8VdR6LPa74nED0FDxobLnG7dlW2+pf9nUjCUgVPU80lN9iqPd1/r1KRnuFA2u5UO18R7L3zWiWYw5sRdqjM/v2V1LJvK6lHVceroL/yhkQmcisZrfB9NKw6U2Rj0aaX2cThWxb1Kf8DYvvjzsLllNlO7s+HD8=,iv:2FU5tits8xsvjKo2MrP9C5aaIb4pjFpn4rlOqL/zJm8=,tag:PXFREhUP6ZpcIr6MnaL3Mw==,type:str]
+    version: 3.13.3

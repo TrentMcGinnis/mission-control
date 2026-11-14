@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+    name: pihole-http
+    namespace: pihole
+spec:
+    entryPoints:
+        - web
+    routes:
+        - kind: Rule
+          match: ENC[AES256_GCM,data:ngK7zq5cES+JjSCkEf4jPiSz20KCKcfP0SuW,iv:Ko+HPS3mCu2wfxrabei7wrmmxbenSlj5fPXb12QmGgc=,tag:w52fLnyxTOan9foCGb5CzQ==,type:str]
+          services:
+            - kind: Service
+              name: pihole
+              port: http
+          middlewares:
+            - name: pihole-https-redirect
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBrRWV4L21DYXZNS0c2SzNT
+            QmxKTTdoYUxWak9VREVYK2VRbFRjNHIrVlFBCkdxQjhaUWZHZ2xMejNQWmtHWktZ
+            dk0zb1V6WHZ2NXBZTnI5SGhONlpFM1UKLS0tIDZGQ3JrVDZoZ3VoMWhRL1dxUXBO
+            VWI1VThjMkpkbXFxUEFHbWU2SlVjRzAKh6GYFnXQdX09GjGOe+tlk9amj4qFJfXZ
+            gbkKN9/8aZl5GRTGmvlNBtLc7paxLRC4TzN2LECFrsddTTyR5h7XwQ==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^match$
+    lastmodified: "2026-11-14T16:51:53Z"
+    mac: ENC[AES256_GCM,data:/7YUbqmJVjcAy3hG7zRNcFuvichAPXQjdsFOa3Vh7WRLRn1SpUMPeybpApTUxnjccOvku7V0p3aKFel5owb8pV0PSrt1wfYrprA8LSelFkBEka0vtxhBtFciodJ7RkW/vOmvZ7GmGFkww3TtBTHhNPHIJ8gze5OD2fi9I2GzD0c=,iv:AFQiwwk8BHkT56fr1mJ7X7Rk8a7nKIuhHk5XTuxU9cU=,tag:hj1LERuqO6G2EI0a9yCGUw==,type:str]
+    version: 3.13.3
