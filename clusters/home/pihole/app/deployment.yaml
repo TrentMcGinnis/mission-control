@@ -18,6 +18,9 @@ spec:
         app.kubernetes.io/name: pihole
     spec:
       automountServiceAccountToken: false
+      # The hostPort address belongs to this node; update both if it moves.
+      nodeSelector:
+        kubernetes.io/hostname: k8s0
       securityContext:
         seccompProfile:
           type: RuntimeDefault
@@ -27,9 +30,13 @@ spec:
           ports:
             - name: dns-tcp
               containerPort: 53
+              hostIP: 10.0.3.1
+              hostPort: 53
               protocol: TCP
             - name: dns-udp
               containerPort: 53
+              hostIP: 10.0.3.1
+              hostPort: 53
               protocol: UDP
             - name: http
               containerPort: 80

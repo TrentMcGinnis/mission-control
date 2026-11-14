@@ -4,9 +4,9 @@ metadata:
   name: pihole-dns
   namespace: pihole
 spec:
-  # k3s ServiceLB exposes port 53 on the node's LAN address.
-  type: LoadBalancer
-  externalTrafficPolicy: Local
+  # LAN DNS uses the deployment's IP-scoped hostPorts. ServiceLB's wildcard
+  # hostPorts also intercept systemd-resolved at 127.0.0.53 on this node.
+  type: ClusterIP
   selector:
     app.kubernetes.io/name: pihole
   ports:
