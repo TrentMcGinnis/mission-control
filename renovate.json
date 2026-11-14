@@ -18,5 +18,10 @@
     "managerFilePatterns": [
       "/\\.ya?ml$/"
     ]
+  },
+  "helm-values": {
+    "managerFilePatterns": [
+      "/\\.ya?ml$/"
+    ]
   }
 }
