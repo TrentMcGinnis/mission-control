@@ -8,8 +8,6 @@ controllers:
   main:
     containers:
       main:
-        image:
-          tag: v3.4.1
         env:
           REDIS_HOSTNAME: '{{ printf "%s-valkey" .Release.Name }}'
           IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
@@ -86,6 +84,7 @@ server:
               devic.es/dri: 1
           image:
             repository: ghcr.io/immich-app/immich-server
+            tag: v3.4.1
             pullPolicy: IfNotPresent
 
 machine-learning:
@@ -101,6 +100,7 @@ machine-learning:
               cpu: "1"
           image:
             repository: ghcr.io/immich-app/immich-machine-learning
+            tag: v3.4.1
             pullPolicy: IfNotPresent
           env:
             TRANSFORMERS_CACHE: /cache
