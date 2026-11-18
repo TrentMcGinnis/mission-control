@@ -3,3 +3,7 @@ kind: Kustomization
 resources:
   - pvc.yaml
   - helm
+  - certificate.yaml
+  - ingressroute.yaml
+  - ingressroute-http.yaml
+  - https-redirect.yaml

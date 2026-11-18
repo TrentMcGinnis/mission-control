@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+    name: bluemap-https
+    namespace: minecraft
+spec:
+    entryPoints:
+        - websecure
+    routes:
+        - kind: Rule
+          match: ENC[AES256_GCM,data:rgXDxQ+AutjDVWpBOqLw7jysjqTss+mQxg3Pqg==,iv:WjBEHRvrXmmW2P3jUXnYXProVq7EBFyBdxa+KQ/G86I=,tag:4sEEVXqkD++pXMapdr1aIw==,type:str]
+          services:
+            - kind: Service
+              name: minecraft
+              port: 8100
+    tls:
+        secretName: bluemap-tls
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBjbXlrR3F2NWdEQkNPTGFC
+            bGtBQTJ4YVQzM3ZrbGRlb1hjNHN4c2Q1YjBRCkVnWXZHWnV5TWpPR2RrWW1WZGtE
+            clArdHYzay85bEhINHU3YkxwUnllYnMKLS0tICszTFU2NEZMYXRHN09mOHdWNXpS
+            amdxa2ROMm5md0YrWmNWYlBTMjl2OUEKtL5JqMEeYhcW82DY6aXINoX2qr0bLsXS
+            VIzMzmW3h4OqA0XQjtRGOajeg0p5cAJdjNRLEaI/pMF06KZfn3sC7w==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^match$
+    lastmodified: "2026-11-18T04:02:00Z"
+    mac: ENC[AES256_GCM,data:XFnYTLr03s+ZI6cYY81NeVgfXFtHDxaC0LmKHEe1N6fxxaDcwjai7/nPxVMZtWiq6dKbZKaXkTBWy0XLjlIy4BQU4czg9VcSM6m+3iMfTXvv6tLylltu4a+1xy+OG0jqr4yX6jMy8ITIMaq+XX49W0ASx8HxjzxYslIZimX3CsU=,iv:Q658kJJUJceuHlgOMW/LOT1sda0vX1puckZaxJzrMkY=,tag:yXY06rJy6yuH04YVUi0wKA==,type:str]
+    version: 3.13.3

@@ -1,0 +1,37 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: bluemap
+    namespace: minecraft
+spec:
+    secretName: bluemap-tls
+    dnsNames:
+        - ENC[AES256_GCM,data:mxKkspHSgSYOqgDTc56j0Yt/MYw=,iv:KJCzhgsd9CIMZjwF745CZt1SqPBmI+/V9D5VNa2/rBE=,tag:o0GJvZWAQi+NPTxnSfi0Ug==,type:str]
+    duration: 2160h
+    renewBefore: 720h
+    privateKey:
+        algorithm: ECDSA
+        size: 256
+        rotationPolicy: Always
+    usages:
+        - digital signature
+        - server auth
+    issuerRef:
+        name: homelab-ca
+        kind: ClusterIssuer
+        group: cert-manager.io
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBubi9vcG52c0JYSGtjaVVL
+            MnRtKy9WRW1YYThBQTJKNjN0VVg4dzZ2UlUwClRTMmgvK3JZNm00VXhtMG1ReHR0
+            cTRBdUZCbXp4Um0zNEFkMEMycDFZK2cKLS0tIEZiWTJCL1JZYm9CaFdDYXdpcEt3
+            d05xemtLNmU2TlhoSzROY2Y5czBOWGMK7LtN4w+LAkrw07HSe67UzpNPzSNLngMd
+            wUkeLFYiTy8Wx3DsY7HWRewiJDSfJfdpSrv1RD9e34D6SHqFjCViKQ==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^(dnsNames|commonName)$
+    lastmodified: "2026-11-18T04:01:59Z"
+    mac: ENC[AES256_GCM,data:WJaxNx4gzch2v2DoChNtJfuC3RBPBqNtv6L8BPbZe2gsUkmupENHggHA4YvG7ooIuEUCNr69SyY792uE/9Usts+18mLXe0CkLpWBaSwLo67jHW0OUjyE3WK6+q6HHuHynGaLpeMzguroouhZs+OglBOaZFKi/n7tx4n7IXzw9RY=,iv:yXRNubbvKbQGoC5NowF6OrtO8jeG61Dct9Z4VjKV5cs=,tag:cKJU20hRpbIEAVUr936fIA==,type:str]
+    version: 3.13.3
