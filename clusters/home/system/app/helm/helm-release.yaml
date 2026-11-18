@@ -7,13 +7,9 @@ spec:
   interval: 10m
   releaseName: device-plugin
   targetNamespace: kube-system
-  chart:
+  chartRef:
     kind: OCIRepository
-    spec:
-      interval: 12h
-      url: oci://ghcr.io/squat/charts/generic-device-plugin
-      ref:
-        tag: "0.2.0"
+    name: generic-device-plugin
   valuesFrom:
     - kind: ConfigMap
       name: device-plugin-helm-values

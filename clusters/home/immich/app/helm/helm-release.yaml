@@ -7,13 +7,9 @@ spec:
   interval: 10m
   releaseName: immich
   targetNamespace: immich
-  chart:
+  chartRef:
     kind: OCIRepository
-    spec:
-      interval: 12h
-      url: oci://ghcr.io/immich-app/immich-charts/immich
-      ref:
-        tag: "0.13.4"
+    name: immich
   valuesFrom:
     - kind: ConfigMap
       name: immich-helm-values
