@@ -21,7 +21,7 @@ server:
     type: Recreate
   image:
     repository: "ghcr.io/codewithcj/sparkyfitness-server"
-    tag: v1.11.0
+    tag: v1.12.1
   secrets:
     generate: false
     existingSecret: sparkyfitness-app
