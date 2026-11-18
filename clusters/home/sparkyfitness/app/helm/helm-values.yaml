@@ -20,7 +20,7 @@ server:
   strategy:
     type: Recreate
   image:
-    repository: "codewithcj/sparkyfitness-server"
+    repository: "ghcr.io/codewithcj/sparkyfitness-server"
     tag: v1.11.0
   secrets:
     generate: false
@@ -34,7 +34,7 @@ server:
       size: 10Gi
 frontend:
   image:
-    repository: "codewithcj/sparkyfitness-frontend"
+    repository: "ghcr.io/codewithcj/sparkyfitness-frontend"
     tag: v1.11.0
 ingress:
   enabled: false
