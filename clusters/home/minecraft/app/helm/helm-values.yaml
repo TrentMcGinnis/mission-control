@@ -22,6 +22,40 @@ persistence:
     enabled: true
     existingClaim: minecraft-data
 
+initContainers:
+  - name: configure-bluemap
+    image: busybox:1.37.0
+    command: ["/bin/sh", "-ec"]
+    args:
+      - |
+        cd /data
+        mkdir -p plugins/BlueMap
+        cd plugins/BlueMap
+
+        set_config_value() {
+          file="$1"
+          key="$2"
+          value="$3"
+          setting="^[[:space:]]*\"?${key}\"?[[:space:]]*[:=][[:space:]]*"
+
+          if [ -f "$file" ] && grep -Eq "$setting" "$file"; then
+            sed -i -E "s@($setting)(\"[^\"]*\"|[^[:space:],#/]+)@\1$value@" "$file"
+          else
+            printf '\n%s: %s\n' "$key" "$value" >> "$file"
+          fi
+        }
+
+        set_config_value core.conf accept-download true
+        set_config_value webserver.conf port 8100
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop: [ALL]
+    volumeMounts:
+      - name: datadir
+        mountPath: /data
+
 startupProbe:
   enabled: true
   failureThreshold: 90
