@@ -48,7 +48,9 @@ minecraftServer:
   motd: "Welcome to SPLIT FICTION"
   rcon:
     enabled: false
-  pluginUrls: []
+  pluginUrls:
+    - "https://github.com/BlueMap-Minecraft/BlueMap/releases/download/v5.29/bluemap-5.29-paper.jar"
+    - "https://hangarcdn.papermc.io/plugins/_PanFiluta_/SingleSleeper/versions/1.0-SNAPSHOT/PAPER/SingleSleeper-1.0-SNAPSHOT.jar"
   extraPorts:
     - name: bluemap
       containerPort: 8100
@@ -59,5 +61,4 @@ minecraftServer:
         port: 8100
 
 extraEnv:
-  PAPER_BUILD: "249"
   PAUSE_WHEN_EMPTY_SECONDS: "120"
