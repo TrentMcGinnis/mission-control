@@ -35,7 +35,7 @@ server:
 frontend:
   image:
     repository: "ghcr.io/codewithcj/sparkyfitness-frontend"
-    tag: v1.11.0
+    tag: v1.12.1
 ingress:
   enabled: false
 httpRoute:
