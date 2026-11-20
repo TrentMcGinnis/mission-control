@@ -1,0 +1,4 @@
+image:
+  registry: ghcr.io
+  repository: headlamp-k8s/headlamp
+  tag: "0.46.0"
