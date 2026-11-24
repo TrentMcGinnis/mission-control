@@ -7,7 +7,7 @@
   "schedule": [
     "* 0-3 * * *"
   ],
-  "prConcurrentLimit": 5,
+  "prConcurrentLimit": 10,
   "automerge": false,
   "flux": {
     "managerFilePatterns": [
