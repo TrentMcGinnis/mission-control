@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
 - helm
 - ingress-tailscale.yaml
+- https-redirect.yaml
+- ingressroute.yaml

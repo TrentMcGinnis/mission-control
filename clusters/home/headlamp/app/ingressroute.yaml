@@ -1,0 +1,33 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+    name: headlamp-http
+    namespace: headlamp
+spec:
+    entryPoints:
+        - web
+    routes:
+        - kind: Rule
+          match: ENC[AES256_GCM,data:6P8NvKnfZq3yz5e/BSbYpGrOWILhsz3DpyWztdE=,iv:h6HXAOGXkUfEOaPYp09snNDwm74y9a1mwjonUDUotuk=,tag:Dt+8iSKrFGYrAQGw1nADrA==,type:str]
+          services:
+            - kind: Service
+              port: http
+              name: headlamp
+              namespace: headlamp
+          middlewares:
+            - name: headlamp-https-redirect
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBJN1R1aFp1ZFc4UkpNV2F1
+            R1ZhYXFTNkVHMDNlVllMVDVnenB3NmROaXo4Ck1TZzcrYkhvVVFuc1JZdFlDbnpp
+            SWtSUDQ3dzRuSk15WU5rMVBwbitHajAKLS0tIGdnZlIwMDRpYklzbE54amx1RWVP
+            dTN0ckxxc3FKcTZWczRUY2hhSWpYSEkKCXSzDQRXXCOENwcN4SRl2gjt4AyJCIe4
+            0AiwLjGapKPhQoDJlvRanII9HBNPQ8Zq9uk9MROkPHjNFFYiZ03EgQ==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^match$
+    lastmodified: "2026-11-25T01:29:06Z"
+    mac: ENC[AES256_GCM,data:GqIICn2jIX9dyMEmpYNuLxKspw5zvmDsZ2WEi2DgzKF0m8SXxGLwwotyxsyMZFCQp7D7xoupvASN5YVwUR1ioUjY0xmNJvO/DVwPQTqHHXz4sTooqbTKO0GrbDRqZ/L8HyifMTxpu3uskwd7igeV3pny0U3QNHIViafurKD5pP8=,iv:C+Dsmnw9LdlZTSAJSR7vYegIKErkYcucIOHhCqtn5cQ=,tag:/nFKGzVnjx8osFjtMyyIzw==,type:str]
+    version: 3.13.3

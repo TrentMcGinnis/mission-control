@@ -1,0 +1,37 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: headlamp
+    namespace: headlamp
+spec:
+    secretName: headlamp-tls
+    dnsNames:
+        - ENC[AES256_GCM,data:kYP4HHgjsHTN6Nelrg4R61KgC8xI,iv:57Evb819p0FP8trPt54+GVK2AOwLZ5i60F1gNyqM3Es=,tag:axVl/Z6uyb0yahrgtqCyZg==,type:str]
+    duration: 2160h
+    renewBefore: 720h
+    privateKey:
+        algorithm: ECDSA
+        size: 256
+        rotationPolicy: Always
+    usages:
+        - digital signature
+        - server auth
+    issuerRef:
+        name: homelab-ca
+        kind: ClusterIssuer
+        group: cert-manager.io
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBzcVpJUVpobVdSWUZvbDFV
+            OHMzbXlxT1FaTGtDanR3aW0waFAxWTdqaFNvCmRxM1poZksvNFpKaVVEbjllVU5M
+            NUVXRjgyY0tMUDlZT2V0VklhbmtlbGsKLS0tIDZMYk1CK2dGeTFPdzlCQVhhV3o0
+            eWo1T1BxYmt3MCtFUVQzbmkvR1RPTHcKYDbDUdOk6Xdfq2Lm8u1eAuGTMpdneVUE
+            fYeu6cxQ2Q0l3dXP+3E4vV5CpYaw6/2SLupRoD/FlrhHnHaLoVs5+g==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1u8ps6qasrajav429m5x0tplp5hzxkl7xrysqupzpq22vpmvvsd8sysgd7w
+    encrypted_regex: ^(dnsNames|commonName)$
+    lastmodified: "2026-11-25T01:30:34Z"
+    mac: ENC[AES256_GCM,data:+qhTftHYDb9oF1rRLdavBTPcHP5wl+FXZdgZKBGHjfDq0U/0+Ap7ajaXal0ykx6rKq+taFB6MXCaPJBhCTijfbnmpxUbWxTcjgwtEuqqhpNOjkW3YgaHEGICAh/4ODv7Ul7HZKAzg8l8ZDvqfhZbYnmNQU/n3jmsxYUVhUw5NGA=,iv:RG6K0tRHcQ/3ppsEfNqPvLpH3+G4pfNaHAGe3nuqH7I=,tag:qUheKBh96vqECvySiJmWsg==,type:str]
+    version: 3.13.3
